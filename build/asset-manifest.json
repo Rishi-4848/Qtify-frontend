@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ce845b4c.css",
+    "main.js": "/static/js/main.63042ce4.js",
+    "static/js/787.6510a649.chunk.js": "/static/js/787.6510a649.chunk.js",
+    "static/media/vibrating-headphone 1.png": "/static/media/vibrating-headphone 1.7f83d2d8dde670dda737.png",
+    "static/media/Search icon.svg": "/static/media/Search icon.dd412b17d027f487794a6a6efed1d8be.svg",
+    "index.html": "/index.html",
+    "main.ce845b4c.css.map": "/static/css/main.ce845b4c.css.map",
+    "main.63042ce4.js.map": "/static/js/main.63042ce4.js.map",
+    "787.6510a649.chunk.js.map": "/static/js/787.6510a649.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ce845b4c.css",
+    "static/js/main.63042ce4.js"
+  ]
+}

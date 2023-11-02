@@ -4,13 +4,17 @@ import './App.css';
 
 import Hero from './components/Hero/Hero';
 import NavBar from './components/NavBar/NavBar';
-import { fetchTopAlbums } from './components/Api/Api';
-import Card from './components/Card/Card';
+import { fetchNewAlbums, fetchSongs, fetchTopAlbums } from './components/Api/Api';
+import Section from './components/Section/Section';
+
+
 
 function App() {
 
 
   const [topAlbumsData,setTopAlbumsData] = useState([]);
+  // const [newAlbumsData,setNewAlbumsData] = useState([]);
+  
 
   const generateData= async ()=>{
 
@@ -20,6 +24,12 @@ function App() {
       console.log(data);
       setTopAlbumsData(data);
 
+    //  const newAlbumsData = await fetchNewAlbums();
+    //  setNewAlbumsData(newAlbumsData);
+
+    // const songsData = await fetchSongs();
+    // setSongs(songsData);
+
     }catch(err){
      console.log(err)
     }
@@ -28,16 +38,21 @@ function App() {
 
   useEffect(()=>{
     generateData();
+   
   },[])
   return (
     <div className="App">
     <NavBar/>
     <Hero/>
-    {topAlbumsData.map((item)=>{
-      return(
-        <Card key={item.id} data={item} type="album"/>
-      )
-    })}
+   
+    <div>
+    <Section data={topAlbumsData} title="Top Albums"/>
+    {/* <Section data={newAlbumsData} title="New Albums"/>
+    */}
+    
+    
+    </div>
+    
     </div>
   );
 }

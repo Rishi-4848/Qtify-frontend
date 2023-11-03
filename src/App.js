@@ -1,11 +1,14 @@
 
 import { useEffect, useState } from 'react';
-import './App.css';
+import styles from './App.css';
 
 import Hero from './components/Hero/Hero';
 import NavBar from './components/NavBar/NavBar';
-import { fetchNewAlbums, fetchSongs, fetchTopAlbums } from './components/Api/Api';
+import { fetchFaq, fetchNewAlbums, fetchSongs, fetchTopAlbums } from './components/Api/Api';
 import Section from './components/Section/Section';
+import Accordin from './components/Accordin/Accordin';
+
+
 
 
 
@@ -15,7 +18,8 @@ import Section from './components/Section/Section';
 function App() {
 
 
-  const [data,setData] = useState([]);
+  const [topAlbumsdata,setTopAlbumsData] = useState([]);
+  const [newAlbumsData,setNewAlbumsData] = useState([]);
   const [songsData,setSongsData] = useState([]);
   const [filteredDataValues,setFilteredDataValues] = useState([]);
   const [toggle,setToggle] = useState(false);
@@ -84,10 +88,10 @@ useEffect(()=>{
      
       const data = await fetchTopAlbums();
       console.log(data);
-      setData(data);
+      setTopAlbumsData(data);
 
      const newAlbumsData = await fetchNewAlbums();
-     setData(newAlbumsData);
+     setNewAlbumsData(newAlbumsData);
 
     }catch(err){
      console.log(err)
@@ -99,6 +103,10 @@ useEffect(()=>{
     setFilteredDataValues(val)
   }
 
+
+  
+
+  
   useEffect(()=>{
     generateData();
     generateAllSongsData();
@@ -109,14 +117,14 @@ useEffect(()=>{
     <NavBar/>
     <Hero/>
    
-    <div>
-    <Section data={data} title="Top Albums" filteredDataValues={data}/>
-    <Section data={data} title="New Albums" filteredDataValues={data}/>
+    <div className={styles.sectionWrapper}>
+    <Section data={topAlbumsdata} title="Top Albums" filteredDataValues={topAlbumsdata}/>
+    <Section data={newAlbumsData} title="New Albums" filteredDataValues={newAlbumsData}/>
     <Section data={songsData} title="Songs" type="song" value={value} filteredData={filteredData} filteredDataValues={filteredDataValues} handleChange={handleChange} handleToggle={handleToggle}/>
    
     
-    
     </div>
+    <Accordin/>
     
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSwiper } from 'swiper/react';
 import RightArrow from '../Images/RightArrow/RightArrow';
 import styles from "./Carousel.module.css"
+import "swiper/css"
 
 const CarouselRightNavigation = () => {
 

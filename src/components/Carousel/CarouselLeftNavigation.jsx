@@ -3,6 +3,7 @@ import  { useEffect, useState } from 'react';
 import { useSwiper } from 'swiper/react';
 import LeftArrow from '../Images/LeftArrow/LeftArrow';
 import styles from "./Carousel.module.css"
+import "swiper/css"
 
 const CarouselLeftNavigation = () => {
   const swiper = useSwiper();
@@ -13,7 +14,7 @@ const CarouselLeftNavigation = () => {
              setIsBeginning(swiper.isBeginning)
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+  },[swiper])
   return (
     <div className={styles.leftNav}>
       {!isBeginning && <LeftArrow onClick={()=> swiper.slidePrev()}/>}

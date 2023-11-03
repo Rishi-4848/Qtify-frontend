@@ -4,16 +4,78 @@ import './App.css';
 
 import Hero from './components/Hero/Hero';
 import NavBar from './components/NavBar/NavBar';
-import { fetchNewAlbums, fetchTopAlbums } from './components/Api/Api';
+import { fetchNewAlbums, fetchSongs, fetchTopAlbums } from './components/Api/Api';
 import Section from './components/Section/Section';
+
+
+
 
 
 
 function App() {
 
 
-  const [topAlbumsData,setTopAlbumsData] = useState([]);
-  const [newAlbumsData,setNewAlbumsData] = useState([]);
+  const [data,setData] = useState([]);
+  const [songsData,setSongsData] = useState([]);
+  const [filteredDataValues,setFilteredDataValues] = useState([]);
+  const [toggle,setToggle] = useState(false);
+  const [value,setValue] = useState(0);
+
+
+  //to handle toggle
+  const handleToggle = ()=>{
+    setToggle(!toggle)
+  }
+
+  //to handle change in value
+  const handleChange = (event,newValue)=>{
+    setValue(newValue)
+  }
+
+
+  // generating all songs data
+const generateAllSongsData = async()=>{
+
+  try{
+    const res = await fetchSongs();
+    setSongsData(res)
+    setFilteredDataValues(res)
+  }catch(err){
+    console.log(err)
+  }
+ 
+}
+
+// filtering songs based on genre
+
+const generateSongsData = (value)=>{
+  let key ;
+  if(value===0){
+    filteredData(songsData)
+    return;
+  }
+  else if(value ===1){
+    key = "rock";
+  }else if(value ===2){
+   key = "pop"
+  }
+  else if(value ===3){
+    key = "jazz"
+  }
+  else if(value ===4){
+    key="blues"
+  }
+
+  const res = songsData.filter(item =>item.genre.key ===key)
+  console.log( key ,res)
+  filteredData(res)
+}
+
+
+useEffect(()=>{
+  generateSongsData(value);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[value])
   
 
   const generateData= async ()=>{
@@ -22,13 +84,10 @@ function App() {
      
       const data = await fetchTopAlbums();
       console.log(data);
-      setTopAlbumsData(data);
+      setData(data);
 
      const newAlbumsData = await fetchNewAlbums();
-     setNewAlbumsData(newAlbumsData);
-
-    // const songsData = await fetchSongs();
-    // setSongs(songsData);
+     setData(newAlbumsData);
 
     }catch(err){
      console.log(err)
@@ -36,8 +95,13 @@ function App() {
    
   }
 
+  const filteredData = (val)=>{
+    setFilteredDataValues(val)
+  }
+
   useEffect(()=>{
     generateData();
+    generateAllSongsData();
    
   },[])
   return (
@@ -46,8 +110,9 @@ function App() {
     <Hero/>
    
     <div>
-    <Section data={topAlbumsData} title="Top Albums"/>
-    <Section data={newAlbumsData} title="New Albums"/>
+    <Section data={data} title="Top Albums" filteredDataValues={data}/>
+    <Section data={data} title="New Albums" filteredDataValues={data}/>
+    <Section data={songsData} title="Songs" type="song" value={value} filteredData={filteredData} filteredDataValues={filteredDataValues} handleChange={handleChange} handleToggle={handleToggle}/>
    
     
     

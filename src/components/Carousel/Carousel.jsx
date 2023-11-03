@@ -9,7 +9,6 @@ const Carousel = ({data , componentRender}) => {
 
   const Controls = ( {data} )=>{
    const swiper = useSwiper();
-   console.log(swiper);
 
    useEffect(()=>{
     swiper.slideTo(0,null);
@@ -21,11 +20,16 @@ const Carousel = ({data , componentRender}) => {
 
   return (
     <div className={styles.wrapper}>
+      
       <Swiper style = {{padding : "0px 20px"}}  initialSlide={0} slidesPerView ={"auto"} spaceBetween={40} allowTouchMove>
+      
         <Controls data={data}/>
        
-        <CarouselLeftNavigation className={styles.leftNav}/>
-         <CarouselRightNavigation className={styles.rightNav}/>
+
+        <CarouselLeftNavigation />
+       
+         <CarouselRightNavigation />
+         
         {
           data.map((item)=>{
             return(

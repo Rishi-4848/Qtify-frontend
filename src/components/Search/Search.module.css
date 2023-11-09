@@ -11,6 +11,7 @@
   display: flex;
   height: 48px;
   align-items: stretch;
+  
 }
 
 .search{
@@ -21,5 +22,25 @@
   border-bottom-right-radius: 0px;
   border: 1px solid var(--color-black);
   width: 502px;
+}
 
+.searchContainer{
+  border: 1px solid var(--color-primary);
+  position: relative;
+  
+}
+
+.dropdown{
+  width: 575px;
+  background-color: var(--color-black);
+  max-height: 400px;
+  overflow-y: scroll;
+  position: absolute;
+  left: 0;
+  top: 100;
+  z-index: 100;
+}
+
+input :focus{
+    outline: none;
 }

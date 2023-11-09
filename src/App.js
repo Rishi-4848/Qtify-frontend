@@ -24,6 +24,9 @@ function App() {
   const [filteredDataValues,setFilteredDataValues] = useState([]);
   const [toggle,setToggle] = useState(false);
   const [value,setValue] = useState(0);
+  // const [allData,setAllData] = useState([]);
+
+
 
 
   //to handle toggle
@@ -87,11 +90,19 @@ useEffect(()=>{
     try{
      
       const data = await fetchTopAlbums();
-      console.log(data);
+     console.log(data,"data")
       setTopAlbumsData(data);
 
      const newAlbumsData = await fetchNewAlbums();
+     console.log(newAlbumsData,"newAlbumsData")
      setNewAlbumsData(newAlbumsData);
+      
+
+    //  const completeData = [].concat(newAlbumsData,data)
+    //  setAllData(completeData)
+   
+    //  console.log(allData,"all data")
+  
 
     }catch(err){
      console.log(err)
@@ -103,7 +114,6 @@ useEffect(()=>{
     setFilteredDataValues(val)
   }
 
-
   
 
   
@@ -114,7 +124,7 @@ useEffect(()=>{
   },[])
   return (
     <div className="App">
-    <NavBar/>
+    <NavBar allData={[...topAlbumsdata,...newAlbumsData]}/>
     <Hero/>
    
     <div className={styles.sectionWrapper}>

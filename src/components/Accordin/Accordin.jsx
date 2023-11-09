@@ -5,6 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { fetchFaq } from '../Api/Api';
 import styles from "./Accordin.module.css";
+import {AiOutlineArrowDown} from "react-icons/ai"
 
 const Accordin = () => {
 
@@ -29,9 +30,11 @@ useEffect(()=>{
               return(
                 <Accordion className={styles.wrapper}>
                   <AccordionSummary
+                   expandIcon={<AiOutlineArrowDown style={{color : "#34C94B"}}/>}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                   className={styles.question}
+                 
                 >
                   <Typography >{elem.question}</Typography>
                 </AccordionSummary>

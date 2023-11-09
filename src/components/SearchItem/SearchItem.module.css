@@ -1,0 +1,31 @@
+.wrapper{
+  display: flex;
+  max-width: 575px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var( --color-black);
+  padding: 10px;
+}
+
+
+.image{
+  width: 50px;
+  height: 50px;
+  margin-top: 2px;
+}
+
+img{
+  object-fit: cover;
+}
+
+.imageContainer{
+  display: flex;
+  align-items: center;
+
+}
+
+.artist{
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}

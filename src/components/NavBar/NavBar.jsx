@@ -5,11 +5,11 @@ import Search from '../Search/Search';
 import Logo from '../Images/Logo/Logo';
 
 
-const NavBar = () => {
+const NavBar = ({allData}) => {
   return (
     <nav className={styles.navbar}>
       <Logo/>
-      <Search/>
+      <Search allData={allData} placeholder="Search a album of your choice"/>
       <Button children="Give FeedBack"/>
     </nav>
   );
